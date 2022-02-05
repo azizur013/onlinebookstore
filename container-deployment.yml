@@ -37,5 +37,4 @@
         state: started
         published_ports:
           - 0.0.0.0:8008:8080
-        depends_on:
-          bookstore_db
+ 
