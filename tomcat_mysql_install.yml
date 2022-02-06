@@ -71,7 +71,7 @@
 
     - name: Copy war file
       copy:
-        src: /var/lib/jenkins/workspace/bookstore-ansible-server-depoly/target/onlinebookstore-0.0.1-SNAPSHOT.war
+        src: /var/lib/jenkins/workspace/bookstore-ansible-server-depoly/target/*.war
         dest: /usr/share/tomcat/webapps/bookstore.war
 
     - name: Start and enable tomcat
