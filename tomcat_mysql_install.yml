@@ -69,6 +69,11 @@
         src: tomcat.service.j2
         dest: /etc/systemd/system/tomcat.service
 
+    - name: Copy war file
+      template:
+        src: target/*.war
+        dest: /usr/share/tomcat/webapps/bookstore.war
+
     - name: Start and enable tomcat
       service:
         daemon_reload: yes
@@ -96,7 +101,7 @@
           - MySQL-python
         state: installed
 
-    - name: Copy tomcat service file
+    - name: Copy database cnf file
       template:
         src: setup/my.cnf
         dest: /etc/my.cnf
@@ -116,7 +121,7 @@
     - name: Create Application DB User
       mysql_user: name=bookstore password=123456 priv=*.*:ALL host='localhost' state=present
 
-    - name: Copy tomcat service file
+    - name: Copy db sql file
       template:
         src: setup/CreateDatastore.sql
         dest: /tmp/db-load-script.sql
