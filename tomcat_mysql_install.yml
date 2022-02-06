@@ -70,7 +70,7 @@
         dest: /etc/systemd/system/tomcat.service
 
     - name: Copy war file
-      template:
+      copy:
         src: target/*.war
         dest: /usr/share/tomcat/webapps/bookstore.war
 
@@ -102,7 +102,7 @@
         state: installed
 
     - name: Copy database cnf file
-      template:
+      copy:
         src: setup/my.cnf
         dest: /etc/my.cnf
 
@@ -122,7 +122,7 @@
       mysql_user: name=bookstore password=123456 priv=*.*:ALL host='localhost' state=present
 
     - name: Copy db sql file
-      template:
+      copy:
         src: setup/CreateDatastore.sql
         dest: /tmp/db-load-script.sql
 
