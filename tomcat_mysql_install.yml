@@ -88,3 +88,38 @@
         permanent: true
         state: enabled
         immediate: yes
+
+    - name: Install MariaDB package
+      yum:
+        name:
+          - mariadb-server
+          - MySQL-python
+        state: installed
+
+    - name: Copy tomcat service file
+      template:
+        src: setup/my.cnf
+        dest: /etc/my.cnf
+
+    - name: Start MariaDB Service
+      service: name=mariadb state=started enabled=yes
+
+    - name: Start firewalld
+      service: name=firewalld state=started enabled=yes
+
+    - name: insert firewalld rule
+      firewalld: port=3306/tcp permanent=true state=enabled immediate=yes
+
+    - name: Create Application Database
+      mysql_db: name=onlinebookstore state=present
+
+    - name: Create Application DB User
+      mysql_user: name=bookstore password=123456 priv=*.*:ALL host='localhost' state=present
+
+    - name: Copy tomcat service file
+      template:
+        src: setup/CreateDatastore.sql
+        dest: /tmp/db-load-script.sql
+
+    - name: Load Inventory Data
+      shell: mysql -f < /tmp/db-load-script.sql
