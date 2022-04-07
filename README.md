@@ -1,4 +1,4 @@
-# Online Book Store
+# Online Book Store 2
 <br/><b style="color:red">Welcome to Online Book Store</b>
 
 <b>NOTE:- The Project Files are kept under <a href="https://github.com/shashirajraja/onlinebookstore/tree/gh-pages">gh-pages</a> and <a href="https://github.com/shashirajraja/onlinebookstore/tree/J2EE">J2EE</a> Branch!</b><br/>
